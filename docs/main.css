@@ -51,7 +51,7 @@ ul{
 }
 
 #header h1{
-    font-size: 450%;
+    font-size: 350%;
     float: right;
     color: #FFF;
     max-width: 7em;
@@ -124,7 +124,7 @@ article iframe{
 
 
 #goals h1{
-    font-size: 3rem;  
+    font-size: 300%;  
     padding: 5% 0;
 }
 
@@ -140,7 +140,7 @@ article iframe{
 
 #goals #left-ul{
     float: left;
-    margin-left: 5em;
+    margin-left: 5%;
     margin-right: 0;
     padding-left: 0;
     padding: 0;
@@ -148,7 +148,7 @@ article iframe{
 
 #goals #right-ul{
     float: right;
-    margin-right: 5em;
+    margin-right: 5%;
     margin-left: 0;
     padding-left: 0;
     padding: 0;
@@ -168,7 +168,7 @@ article iframe{
 
 
 #goal-img{
-    width: 25%;
+    width: 20%;
     margin: 0 7%;
 }
 
