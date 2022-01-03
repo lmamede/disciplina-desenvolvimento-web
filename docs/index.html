@@ -1,149 +1,40 @@
 <!DOCTYPE html>
-<html>
-    <head><title>Cassini-Huygens</title></head>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-    <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho da Eletiva de Desenvolvimento Web</title>
 
-        <div id="bar">
-            <h1>HOME</h1>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+    <div id="menu">
+        <h1>Trabalhos</h1>
+        <nav>
+            <ul>
+                <a href="/Trabalho1/index.html"><li>Meu Primeiro WebSite</li></a>
+                <a href="/Trabalho2/3.9.html"><li>Utilização da API do DOM</li></a>
+                <a href="https://lmamede.github.io/disciplina-dev-projeto-ic/"><li>Página para Alunos e Professores</li></a>
+                <a href="/Trabalho4/bigint/gcd.html"><li>BigInt</li></a>
+            </ul>
+        </nav>
+    </div>
+    
+    <div class="breakfloat"></div>
+
+    <div id="about">      
+        <div id="content">
+            <h1>Disciplina de Desenvolvimento Web 2021-2 UFRJ</h1>
+
         </div>
-        <div id="header">
-            <img src="header/saturno.gif">
-            <h1>Cassini Huygens:Uma Jornada</h1>            
-        </div>
+    </div>
 
-
-        <div class="breakfloat"></div>
-
-        <article >  
-            <section id="nav">
-                <h1>Navegação</h1>
-                <ul>
-                    <a href="#summary">
-                        <li>
-                            <img src="nav/summary.png"> 
-                            <p>História</p>
-                        </li>
-                    </a>
-
-                    <a href="#goals">
-                        <li>
-                            <img src="nav/goals.png"> 
-                            <p>Objetivos da Missão</p>
-                        </li>
-                    </a>
-
-                    <a href="#news">
-                        <li>
-                            <img src="nav/news.png"> 
-                            <p>Notícias</p>
-                        </li>
-                    </a>
-                </ul>
-            </section> 
-
-            <div class="breakfloat"></div>
-
-            <section id="summary">
-                <h1>História</h1>
-                <p>
-                    Cassini-Huygens foi uma missão espacial não-tripulada enviada em missão ao planeta Saturno e seu sistema de luas. Um projeto conjunto da NASA, ESA (Agência Espacial Europeia) e ASI (Agência Espacial Italiana), ela consistia de dois elementos principais, o orbitador Cassini e a sonda Huygens. Lançada ao espaço em 15 de outubro de 1997, ela entrou em órbita de Saturno em 1 de julho de 2004 e continuou em operação até 15 de setembro de 2017, estudando o planeta, seus satélites naturais, a heliosfera e testando a Teoria da Relatividade. Entre as muitas descobertas da missão estão ambientes potencialmente habitáveis nas luas de Saturno, incluindo um oceano de subsuperfície de água em Enceladus.
-                    Um projeto que levou duas décadas de planejamento e desenvolvimento até seu lançamento, após uma viagem interplanetária de quase sete anos, na qual sobrevoou Vênus e Júpiter, a nave entrou em órbita de Saturno na metade de 2004; em dezembro daquele ano a sonda europeia Huygens separou-se do orbitador Cassini da NASA e em 14 de janeiro de 2005 entrou na atmosfera e pousou na superfície do maior satélite de Saturno, Titã, transmitindo imagens e dados para a Terra, na primeira vez em que um objeto construído pelo ser humano pousou num corpo celeste do Sistema Solar exterior.
-                    A Cassini-Huygens integra o Programa Flagship para os planetas exteriores, o maior e mais caro programa espacial não-tripulado da Agência Espacial Estadunidense. As outras missões deste programa incluem as Viking, as Voyager e a Galileu. A espaçonave de duas partes foi batizada em homenagem aos astrônomos Giovanni Cassini e Christiaan Huygens.    
-                </p>
-
-                <iframe 
-                src="https://www.youtube.com/embed/68vxYRAony8" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe>
-            </section>
-
-            <section id="goals">
-                <h1>Objetivos da Missão: O que a Missão Buscava Responder</h1>
-                <ul id="left-ul">
-                    <li>
-                        <div>
-                            <img src="goals/goal1-rings.jpg" class="goal-icon"> 
-                            <p>A estrutura tridimensional e comportamento dinâmico dos anéis</p>
-                        </div>
-                    </li>
-
-                    <li>
-                        <img src="goals/goal2-satellites.jpg" class="goal-icon"> 
-                        <p>A composição das superfícies e a história geológica dos satélites</p>
-                    </li>
-
-                    <li>
-                        <img src="goals/goal3-japeto.jpg" class="goal-icon"> 
-                        <p>A natureza e origem do material escuro do hemisfério dianteiro de Jápeto</p>
-                    </li>
-                </ul>
-
-                <img src="goals/cassini-icon.png" id="goal-img" alt="">
-                
-               
-                <ul id="right-ul">
-                    <li>
-                        <img src="goals/goal4-magnetosphere.png" class="goal-icon"> 
-                        <p>Medir a estrutura tridimensional e comportamento dinâmico da magnetosfera</p>
-                    </li>
-
-                    <li>
-                        <img src="goals/goal5-clouds.jpg" class="goal-icon"> 
-                        <p>Estudar o comportamento dinâmico das nuvens de Saturno</p>
-                    </li>
-
-                    <li>
-                        <img src="goals/goal6-titancloud.jpg" class="goal-icon"> 
-                        <p>Estudar a vulnerabilidade temporal das nuvens e a meteorologia de Titã</p>
-                    </li>
-                    <li>
-                        <img src="goals/goal7-titan.jpg" class="goal-icon"> 
-                        <p>Caracterizar a superfície de Titã a uma escala regional</p>
-                    </li>
-                </ul>
-
-            </section> 
-            
-            <div class="breakfloat"></div>
-
-            <section id="news">
-                <h3>NOTÍCIAS</h3>
-                <ul>
-                    <a href="https://revistagalileu.globo.com/Ciencia/noticia/2017/09/cassini-tudo-sobre-missao-que-chegou-mais-perto-de-saturno.html">
-                        <li>
-                            <img src="news/noticia1.jpg" width="100px" height="50px"> 
-                            <div class="news-info">
-                                <p id="data">Set 14, 2017</p>
-                                <h1>Cassini: tudo sobre a missão que chegou mais perto de Saturno</h1>
-                                <p>Depois de ajudar a entender melhor o planeta gasoso e suas luas, sonda "se suicida" na atmosfera do Senhor dos Anéis do Sistema Solar</p>
-                            </div>
-                        </li>
-                    </a>
-
-                    <div class="breakfloat"></div>
-
-                    <a href="https://oglobo.globo.com/saude/ciencia/cassini-se-desintegra-na-atmosfera-de-saturno-apos-missao-de-20-anos-21825857">
-                        <li>
-                        <img src="news/cassini-crash.jpg" alt="">
-                            <div class="news-info">
-                                <p id="data">Set 15, 2017</p>
-                                <h1>Cassini se desintegra na atmosfera de Saturno após missão de 20 anos</h1>
-                                <p>O sinal da espaçonave desapareceu na manhã desta sexta-feira</p>
-                            </div>
-                        </li>
-                    </a>
-                    <div class="breakfloat"></div>
-
-                </ul>
-            </section>
-            <footer>
-                <br/>
-                <span>font: <a href="https://pt.wikipedia.org/wiki/Cassini-Huygens">wikipedia</a></span>
-            </footer>
-        </article>
-       
-    </body>
+    <footer>
+        <ul>
+            <li>Lorena Mamede</li>
+            <li><a href="mailto:lorenamb@dcc.ufrj.br">lorenamb@dcc.ufrj.br</li></p>
+        </ul>
+    </footer>
+</body>
 </html>
