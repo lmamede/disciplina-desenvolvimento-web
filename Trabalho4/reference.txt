@@ -1,0 +1,3 @@
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/BigInt
+https://www.geeksforgeeks.org/javascript-bigint-complete-reference/?ref=rp
+https://javascript.info/bigint

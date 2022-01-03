@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Javascript - BigInt</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+        
+        <style type="text/css" media="screen">
+            @import url("gcd.css");
+            @import url("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css");
+        </style>
+    </head>
+
+    <body>
+        <div class="container_bi">
+            <p class="centered">
+                Every Number in Javascript is float
+                <a href="https://en.wikipedia.org/wiki/IEEE_754">IEEE 754</a>
+            </p>
+            <p class="centered">
+                <mark>i</mark> can go beyond 40 (53 bits) by using
+                <a href="https://www.geeksforgeeks.org/javascript-bigint-complete-reference/?ref=rp">
+                    BigInt.
+                </a>
+            </p>
+            <p class="centered">
+                The smallest integer divisible by all integers in the range[1,
+                <mark>i</mark>+1=<span id="i1"> </span>) is:
+            </p>
+            <p class="eqnFont">
+                LCM(<mark><span id="i">i</span></mark>) = <span id="prod"></span>
+            </p>
+
+            <form id="form" class="centered" method="post">
+                <label for="n"><mark>i </mark><span id="range"></span></label>
+                <input
+                    type="range"
+                    min="1"
+                    max="100"
+                    value="40"
+                    step="1"
+                    id="n"
+                    name="n"
+                    style="width: var(--length)"
+                    oninput="saveValues();"
+                />
+                <span style="float: left"> 1 </span>
+                <span style="float: right"> 100 </span>
+                <br /><br />
+            </form>
+
+            <script src="./gcd.js"></script>
+            <script src="LCG.js"></script>
+            <script src="factorize.js"></script>
+            <script src="cookies.js"></script>
+
+            <script>
+                window.onload = function(){
+                    loadValues();
+                }
+
+                function loadValues(){
+                    let previousValue = getCookie("slider");
+                    if (previousValue != "") $("#n").val(previousValue);
+                    else $("#n").val(40);
+                    getFactors();
+                }
+
+                function saveValues(){   
+                    let n = $("#n")[0]; 
+                    setCookie("slider", n.valueAsNumber, 2);    
+                    getFactors();
+                }
+
+                function getFactors() {
+                    let n = $("#n")[0];
+                    let m = $("mark");
+                    if (n) {
+                        // using javascript BigInt code to avoid the 64-bit limit
+                        let factors = LCM(n.valueAsNumber).toString();
+                        let mcolor = factors > Number.MAX_SAFE_INTEGER ? "red" : "green";
+                        let bits = Math.trunc(Math.log2(factors)) + 1;
+                        $("#range").html(`(${bits.toString()} bits)`);
+                        for (i of m) {
+                            i.style.color = mcolor;
+                        }
+                        
+                        let f = factorize(factors.toString());
+
+                        $("#prod").html(`${factors} = ${f}`);
+                
+                            
+                        $("#i1").html((n.valueAsNumber + 1).toString());
+                        $("#i").html(n.valueAsNumber.toString());
+                    }
+                }
+
+                dragAndSave(".container_bi");
+                getFactors();
+            </script>
+        </div>
+    </body>
+</html>
