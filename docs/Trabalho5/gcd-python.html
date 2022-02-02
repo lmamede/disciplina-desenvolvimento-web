@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Javascript - BigInt</title>
+        <title>Javascript - Circles in Rectangle</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script
             src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
@@ -51,7 +51,6 @@
         <script src="LCG.js"></script>
         <script src="cookies.js"></script>
         <script type="module">
-            import { LCM } from "./gcd.js";
             window.saveValues = saveValues;
             loadValues();
 
@@ -76,8 +75,16 @@
 
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
-                const canvasHeight = urlParams.get("h");
-                const canvasWidth = urlParams.get("w");
+                var canvasHeight = urlParams.get("h");
+                var canvasWidth = urlParams.get("w");
+                if(canvasHeight == null || canvasWidth == null){
+                    canvasHeight = 480;
+                    canvasWidth = 640;
+                    urlParams.set("h", canvasHeight);
+                    urlParams.set("w", canvasWidth);
+                    let newURL = `${window.location.href}?${urlParams}`;
+                    window.location.href = newURL;
+                }
                 prepareCanvas(canvasHeight, canvasWidth)
 
                 getDimension();
@@ -85,7 +92,6 @@
 
             function saveValues(){
                 let n = $("#n")[0].valueAsNumber; 
-                //console.log(n)
                 setCookie("ncircles", n, 2);
                 getDimension();
             }
