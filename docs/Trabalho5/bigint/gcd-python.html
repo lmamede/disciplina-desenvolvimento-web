@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Javascript - BigInt</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css"
+        />
+        <link rel="stylesheet" href="./gcd.css" />
+    </head>
+
+    <body>
+        <div id="cont" class="centered">
+            <h1 class="titleFont centered" id="canvasInfo">
+                Canvas: <span id="dim"></span>
+                <br/>
+                Aspect ratio <span id="aspect"></span>
+            </h1>
+            <br/><br/>
+            <canvas id="myCanvas" class="container_bi"></canvas>
+            <br/><br/>
+            <p class="eqnFont centered" id="sliderInfo">
+                <span id="sliderValue"></span>&#8729;&le;
+                <span id="squareDist"></span>
+            </p>
+            
+            <form id="form" class="centered" method="post">
+                <input
+                    type="range"
+                    min="1"
+                    max="100"
+                    value="1"
+                    step="1"
+                    id="n"
+                    name="n"
+                    style="width: 600px"
+                    oninput="saveValues();"
+                />
+            </form>
+        </div>
+        
+
+        <script src="LCG.js"></script>
+        <script src="cookies.js"></script>
+        <script type="module">
+            import { LCM } from "./gcd.js";
+            window.saveValues = saveValues;
+            loadValues();
+
+            function prepareCanvas(canvasHeight, canvasWidth){
+                var canvas = document.getElementById("myCanvas");
+                canvas.height = canvasHeight;
+                canvas.width = canvasWidth;
+                var aspect = canvasHeight/canvasWidth;
+
+                var container = document.getElementById("cont");
+                container.setAttribute("style", `width: ${canvasWidth.toString} px`)
+
+                $("#dim").html(`(${canvasWidth}x${canvasHeight})`)
+                $("#aspect").html(`= ${aspect}`)
+            }
+
+
+            function loadValues(){
+                let previousValue = getCookie("ncircles");
+                if (previousValue != "") $("#n").val(previousValue);
+                else $("#n").val(40);
+
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const canvasHeight = urlParams.get("h");
+                const canvasWidth = urlParams.get("w");
+                prepareCanvas(canvasHeight, canvasWidth)
+
+                getDimension();
+            }
+
+            function saveValues(){
+                let n = $("#n")[0].valueAsNumber; 
+                //console.log(n)
+                setCookie("ncircles", n, 2);
+                getDimension();
+            }
+
+            function getDimension() {
+                var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext("2d");
+                var ncircles = $("#n")[0].valueAsNumber;
+                const w = canvas.width;
+                const h = canvas.height;
+                const n = ncircles;
+
+                const ratio = w/h;
+                const cols = Math.sqrt(n * ratio);
+                const rows = Math.ceil(n / cols);
+
+                // Melhor opção ocupando toda altura
+                {
+                    let _rows = Math.ceil(rows);
+                    let _cols = Math.ceil(n / _rows);
+
+                    if(_rows * ratio < _cols){
+                    const rowsRatio = _cols  / (_rows * ratio);
+                    _rows = Math.ceil(_rows * rowsRatio);
+                    _cols = Math.ceil(n / _rows);
+                    }
+
+                    var fullHeightSide = h / _rows;
+                }
+
+                // Melhor opção ocupando toda largura
+                {
+                    let _cols = Math.ceil(cols);
+                    let _rows = Math.ceil(n / _cols);
+
+                    if(_rows * ratio > _cols){
+                    const colsRatio = (_rows * ratio) / _cols;
+                    _cols = Math.ceil(_cols * colsRatio);
+                    _rows = Math.ceil(n / _cols);
+                    }
+
+                    var fullWidthSide = w / _cols;
+                }
+
+                
+                // Finalmente 
+                let squareSide = Math.max(fullHeightSide, fullWidthSide);
+                $("#sliderValue").html(`${ncircles}`)
+                $("#squareDist").html(`(${Math.floor(h/squareSide)}x${Math.floor(w/ squareSide)})`)
+                
+                // My solution is identical to the code below...
+                let perRow = Math.floor(canvas.width / squareSide)
+                let circleRadius = squareSide / 4;
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                ctx.fillStyle = "black";
+                ctx.strokeStyle = "gray";
+                for (let i = 0; i < ncircles; i++) {
+                    let row = Math.floor(i/perRow);
+                    let col = i % perRow;
+                    let x = circleRadius * 2 + circleRadius*4*col; 
+                    let y = circleRadius * 2 + circleRadius*4*row; 
+                    ctx.beginPath ();
+                    ctx.arc (x,y,circleRadius,0,Math.PI*2)
+                    ctx.fill()
+                    ctx.beginPath ();
+                    ctx.moveTo(x-squareSide/2,y-squareSide/2);
+                    ctx.lineTo(x-squareSide/2,y+squareSide/2);
+                    ctx.lineTo(x+squareSide/2,y+squareSide/2);
+                    ctx.lineTo(x+squareSide/2,y-squareSide/2);
+                    ctx.closePath();
+                    ctx.stroke()
+                }
+            }
+
+            dragAndSave(".container_bi");
+            
+        </script>
+    </body>
+</html>
